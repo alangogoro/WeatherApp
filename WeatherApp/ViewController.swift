@@ -19,6 +19,11 @@ class ViewController: UIViewController {
                 print("City is:", currentWeather.city)
             }
         }
+        HourlyForecast.downloadHourlyForecastWeather { (hourlyForecasts) in
+            for data in hourlyForecasts {
+                print("Forecast data: \(data.temp) \(data.date)")
+            }
+        }
     }
 
 }
