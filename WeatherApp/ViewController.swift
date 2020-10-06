@@ -11,8 +11,14 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        CurrentWeather.getCurrentWeather()
+        
+        let currentWeather = CurrentWeather()
+        /* 只有在接收到 callback 結果（Bool）以後，才會執行 {} 裡的程式 */
+        currentWeather.getCurrentWeather { (success) in
+            if success {
+                print("City is:", currentWeather.city)
+            }
+        }
     }
 
 }

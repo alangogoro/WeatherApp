@@ -15,6 +15,7 @@
 		CE2948842528CA4D0014440C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2948832528CA4D0014440C /* Assets.xcassets */; };
 		CE2948872528CA4D0014440C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE2948852528CA4D0014440C /* LaunchScreen.storyboard */; };
 		CE9E6F3F252B70F500FBBD31 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E6F3E252B70F500FBBD31 /* CurrentWeather.swift */; };
+		CE9E6F44252C169500FBBD31 /* GlobalHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E6F43252C169500FBBD31 /* GlobalHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		CE2948862528CA4D0014440C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE2948882528CA4D0014440C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE9E6F3E252B70F500FBBD31 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
+		CE9E6F43252C169500FBBD31 /* GlobalHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHelpers.swift; sourceTree = "<group>"; };
 		DC8383B1068665ABD0C88BF7 /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +87,7 @@
 				CE29487A2528CA4B0014440C /* AppDelegate.swift */,
 				CE29487C2528CA4B0014440C /* SceneDelegate.swift */,
 				CE29487E2528CA4B0014440C /* ViewController.swift */,
+				CE9E6F43252C169500FBBD31 /* GlobalHelpers.swift */,
 				CE9E6F41252B711300FBBD31 /* Model */,
 				CE2948802528CA4B0014440C /* Main.storyboard */,
 				CE2948832528CA4D0014440C /* Assets.xcassets */,
@@ -218,6 +221,7 @@
 			files = (
 				CE29487F2528CA4B0014440C /* ViewController.swift in Sources */,
 				CE29487B2528CA4B0014440C /* AppDelegate.swift in Sources */,
+				CE9E6F44252C169500FBBD31 /* GlobalHelpers.swift in Sources */,
 				CE9E6F3F252B70F500FBBD31 /* CurrentWeather.swift in Sources */,
 				CE29487D2528CA4B0014440C /* SceneDelegate.swift in Sources */,
 			);
