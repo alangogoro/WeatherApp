@@ -18,6 +18,9 @@
 		CE9E6F44252C169500FBBD31 /* GlobalHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E6F43252C169500FBBD31 /* GlobalHelpers.swift */; };
 		CE9E6F48252C38A700FBBD31 /* HourlyForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E6F47252C38A700FBBD31 /* HourlyForecast.swift */; };
 		CE9E6F4B252C44F700FBBD31 /* WeeklyWeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E6F4A252C44F700FBBD31 /* WeeklyWeatherForecast.swift */; };
+		CE9E6F4E252CBF7D00FBBD31 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E6F4D252CBF7D00FBBD31 /* WeatherViewController.swift */; };
+		CE9E6F532530C60700FBBD31 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E6F512530C60700FBBD31 /* WeatherView.swift */; };
+		CE9E6F542530C60700FBBD31 /* WeatherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9E6F522530C60700FBBD31 /* WeatherView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +38,9 @@
 		CE9E6F43252C169500FBBD31 /* GlobalHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHelpers.swift; sourceTree = "<group>"; };
 		CE9E6F47252C38A700FBBD31 /* HourlyForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecast.swift; sourceTree = "<group>"; };
 		CE9E6F4A252C44F700FBBD31 /* WeeklyWeatherForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWeatherForecast.swift; sourceTree = "<group>"; };
+		CE9E6F4D252CBF7D00FBBD31 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		CE9E6F512530C60700FBBD31 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		CE9E6F522530C60700FBBD31 /* WeatherView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherView.xib; sourceTree = "<group>"; };
 		DC8383B1068665ABD0C88BF7 /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,12 +94,15 @@
 		CE2948792528CA4B0014440C /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				CE2948802528CA4B0014440C /* Main.storyboard */,
+				CE9E6F4D252CBF7D00FBBD31 /* WeatherViewController.swift */,
+				CE9E6F512530C60700FBBD31 /* WeatherView.swift */,
+				CE9E6F522530C60700FBBD31 /* WeatherView.xib */,
 				CE29487A2528CA4B0014440C /* AppDelegate.swift */,
 				CE29487C2528CA4B0014440C /* SceneDelegate.swift */,
 				CE29487E2528CA4B0014440C /* ViewController.swift */,
 				CE9E6F43252C169500FBBD31 /* GlobalHelpers.swift */,
 				CE9E6F41252B711300FBBD31 /* Model */,
-				CE2948802528CA4B0014440C /* Main.storyboard */,
 				CE2948832528CA4D0014440C /* Assets.xcassets */,
 				CE2948852528CA4D0014440C /* LaunchScreen.storyboard */,
 				CE2948882528CA4D0014440C /* Info.plist */,
@@ -173,6 +182,7 @@
 				CE2948872528CA4D0014440C /* LaunchScreen.storyboard in Resources */,
 				CE2948842528CA4D0014440C /* Assets.xcassets in Resources */,
 				CE2948822528CA4B0014440C /* Main.storyboard in Resources */,
+				CE9E6F542530C60700FBBD31 /* WeatherView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +240,8 @@
 				CE9E6F4B252C44F700FBBD31 /* WeeklyWeatherForecast.swift in Sources */,
 				CE9E6F44252C169500FBBD31 /* GlobalHelpers.swift in Sources */,
 				CE9E6F48252C38A700FBBD31 /* HourlyForecast.swift in Sources */,
+				CE9E6F4E252CBF7D00FBBD31 /* WeatherViewController.swift in Sources */,
+				CE9E6F532530C60700FBBD31 /* WeatherView.swift in Sources */,
 				CE9E6F3F252B70F500FBBD31 /* CurrentWeather.swift in Sources */,
 				CE29487D2528CA4B0014440C /* SceneDelegate.swift in Sources */,
 			);

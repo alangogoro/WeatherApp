@@ -36,7 +36,7 @@ class HourlyForecast {
     }
     
     /// 建構式
-    init(weatherDic: Dictionary<String, AnyObject>) {
+    init(weatherDic: [String: AnyObject]) {
         
         let json = JSON(weatherDic)
         
@@ -46,6 +46,7 @@ class HourlyForecast {
         
     }
     
+    // 類別方法||下載24小時預報
     class func downloadHourlyForecastWeather(completion: @escaping (_ hourlyForecast: [HourlyForecast]) -> Void) {
         
         let hourlyForecast_url = "https://api.weatherbit.io/v2.0/forecast/hourly?lang=zh-tw&city=Okinawa,JP&hours=24&key=3ede3937df284270b1f10f8747aabb36"
@@ -61,8 +62,8 @@ class HourlyForecast {
             switch(result) {
             case .success(let value):
                 /* 將資料轉換成每小時預報的 Dictionary */
-                if let dic = value as? Dictionary<String, AnyObject> {
-                    if let forecastList = dic["data"] as? [Dictionary<String, AnyObject>] {
+                if let dic = value as? [String: AnyObject] {
+                    if let forecastList = dic["data"] as? [[String: AnyObject]] {
                         
                         for item in forecastList {
                             let forecast = HourlyForecast(weatherDic: item)

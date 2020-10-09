@@ -24,6 +24,12 @@ class ViewController: UIViewController {
                 print("Forecast data: \(data.temp) \(data.date)")
             }
         }
+        WeeklyWeahterForecast.downloadWeeklyWeatherForecast { (weeklyForecast) in
+            for forecast in weeklyForecast {
+                print("Forecast info: \(forecast.date) \(forecast.temp)")
+            }
+        }
+        
     }
 
 }
