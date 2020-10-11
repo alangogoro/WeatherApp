@@ -19,7 +19,6 @@
                 <outlet property="scrollView" destination="ZOU-it-QrJ" id="Y2B-Zz-sjx"/>
                 <outlet property="tableView" destination="0ho-Up-1W5" id="1Vo-DY-J4K"/>
                 <outlet property="tempLabel" destination="VIf-jq-cUx" id="vdN-wW-1ex"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="weatherInfoLabel" destination="GNO-El-Ywc" id="GEV-1b-bhL"/>
             </connections>
         </placeholder>

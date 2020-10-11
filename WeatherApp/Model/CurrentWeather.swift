@@ -53,7 +53,7 @@ class CurrentWeather {
         }
     }
     
-    // private variables
+    // MARK: 封裝屬性||private variables
     private var _city: String!
     private var _date: Date!
     private var _currentTemp: Double!//currentTemo???
@@ -68,7 +68,7 @@ class CurrentWeather {
     private var _sunrise: String!
     private var _sunset:  String!
     
-    // public getters
+    // MARK: getters
     var city: String {
         if _city == nil {
             _city = ""
@@ -111,7 +111,6 @@ class CurrentWeather {
         }
         return _feelsLike
     }
-    
     var weatherType: String {
         if _weatherType == nil {
             _weatherType = ""

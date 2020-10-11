@@ -12,10 +12,12 @@ import SwiftyJSON
 /// 24小時預報（每小時預報的陣列）
 class HourlyForecast {
     
+    // MARK: 封裝屬性||private variables
     private var _date: Date!
     private var _temp: Double!
     private var _weatherIcon: String!
     
+    // MARK: getters
     var date: Date {
         if _date == nil {
             _date = Date()
