@@ -27,7 +27,7 @@ class WeatherTableViewCell: UITableViewCell {
     // MARK: 設置 TableViewCell
     func generateCell(forecast: WeeklyWeahterForecast) {
         
-        dayOfWeekLabel.text = forecast.date.dayOfWeek()
+        dayOfWeekLabel.text = forecast.date.toDayOfWeek()
         weatherIconImageView.image = getWeatherIconFor(forecast.weatherIcon)
         tempLabel.text = "\(forecast.temp)"
         

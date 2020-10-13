@@ -15,7 +15,7 @@ extension Date {
      Date.shortDate() -> "Oct 1"
      ```
      */
-    func shortDate() -> String {
+    func toShortDate() -> String {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d"// MMM月份縮寫；d天數字
@@ -30,7 +30,7 @@ extension Date {
      Date.time() -> "15:00"
      ```
      */
-    func time() -> String {
+    func toTime() -> String {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"// HH小時；mm分鐘
@@ -45,7 +45,7 @@ extension Date {
      Date.dayOfWeek() -> "Sunday"
      ```
      */
-    func dayOfWeek() -> String {
+    func toDayOfWeek() -> String {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"// EEEE星期幾

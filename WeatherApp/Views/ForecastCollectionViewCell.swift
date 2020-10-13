@@ -21,7 +21,7 @@ class ForecastCollectionViewCell: UICollectionViewCell {
     
     // MARK: 設置 CollectionViewCell
     func generateCell(weather: HourlyForecast) {
-        timeLabel.text = weather.date.time()
+        timeLabel.text = weather.date.toTime()
         weatherIconImageView.image = getWeatherIconFor(weather.weatherIcon)
         tempLabel.text = "\(weather.temp)"
     }

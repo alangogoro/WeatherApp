@@ -88,17 +88,44 @@ class WeatherView: UIView {
         infoCollectionView.dataSource = self
     }
     
+    /// 更新天氣資料
     func refreshData() {
         
         setupCurrentWeather()
+        setupWeatherInfo()
+        infoCollectionView.reloadData()
         
     }
-    
+    /// 更新最近天氣
     private func setupCurrentWeather() {
         cityNameLabel.text = currentWeather.city
-        dateLabel.text = "Today, \(currentWeather.date.shortDate())"
+        dateLabel.text = "Today, \(currentWeather.date.toShortDate())"
         tempLabel.text = "\(currentWeather.currentTemp)"
         weatherInfoLabel.text = currentWeather.weatherType
+    }
+    /// 更新天氣資訊
+    private func setupWeatherInfo() {
+        
+        /* String(format: "字串格式規則", 原內容) */
+        let windInfo = WeatherInfo(infoText: String(format: "%.1f m/sec", currentWeather.windSpeed),
+                                   nameText: nil, image: getWeatherIconFor("wind"))
+        let humidityInfo = WeatherInfo(infoText: String(format: "%.0f", currentWeather.humidity),
+                                       nameText: nil, image: getWeatherIconFor("humidity"))
+        let pressureInfo = WeatherInfo(infoText: String(format: "%.0f 毫巴", currentWeather.pressure),
+                                       nameText: nil, image: getWeatherIconFor("pressure"))
+        let visibilityInfo = WeatherInfo(infoText: String(format: "%.0f 公里", currentWeather.visibility),
+                                         nameText: nil, image: getWeatherIconFor("visibility"))
+        let feelsLikeInfo = WeatherInfo(infoText: String(format: "%.1f°C", currentWeather.feelsLike),
+                                        nameText: nil, image: getWeatherIconFor("feelsLike"))
+        let uvInfo = WeatherInfo(infoText: String(format: "%.1f", currentWeather.uv),
+                                 nameText: "UV Index", image: nil)
+        let sunriseInfo = WeatherInfo(infoText: currentWeather.sunrise,
+                                      nameText: nil, image: getWeatherIconFor("sunrise"))
+        let sunsetInfo = WeatherInfo(infoText: currentWeather.sunset,
+                                     nameText: nil, image: getWeatherIconFor("sunset"))
+        
+        weahterInfos = [windInfo, humidityInfo, pressureInfo, visibilityInfo, feelsLikeInfo, uvInfo, sunriseInfo, sunsetInfo]
+        
     }
     
 }
