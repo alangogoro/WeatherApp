@@ -19,8 +19,8 @@ extension Date {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d"// MMM月份縮寫；d天數字
-        let string = dateFormatter.string(from: self)
-        return string
+        let dfString = dateFormatter.string(from: self)
+        return dfString
         
     }
     
@@ -34,8 +34,23 @@ extension Date {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"// HH小時；mm分鐘
-        let string = dateFormatter.string(from: self)
-        return string
+        let dfString = dateFormatter.string(from: self)
+        return dfString
+        
+    }
+    
+    /**
+     將 Date 格式轉換成星期字串
+     ```
+     Date.dayOfWeek() -> "Sunday"
+     ```
+     */
+    func dayOfWeek() -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"// EEEE星期幾
+        let dfString = dateFormatter.string(from: self)
+        return dfString
         
     }
 }

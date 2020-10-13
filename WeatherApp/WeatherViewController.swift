@@ -30,11 +30,42 @@ class WeatherViewController: UIViewController {
         scrollView.addSubview(weatherView)
         
         /* 取得即時天氣資訊，並更新 xib view */
-        weatherView.currentWeather = CurrentWeather()
+        /*
+         weatherView.currentWeather = CurrentWeather()
         weatherView.currentWeather.getCurrentWeather { (success) in
             weatherView.refreshData()
         }
+         */
         
+        getCurrentWeather(weatherView: weatherView)
+        getWeeklyWeather(weatherView: weatherView)
+        getHourlyWeather(weatherView: weatherView)
     }
 
+}
+
+// MARK: Download Weather
+private func getCurrentWeather(weatherView: WeatherView) {
+    
+    weatherView.currentWeather = CurrentWeather()
+    weatherView.currentWeather.getCurrentWeather { (success) in
+        weatherView.refreshData()
+    }
+    
+}
+private func getWeeklyWeather(weatherView: WeatherView) {
+    
+    WeeklyWeahterForecast.downloadWeeklyWeatherForecast { (weatherForecasts) in
+        weatherView.weeklyWeatherForecasts = weatherForecasts
+        weatherView.tableView.reloadData()
+    }
+    
+}
+private func getHourlyWeather(weatherView: WeatherView) {
+    
+    HourlyForecast.downloadHourlyForecastWeather { (weatherForecasts) in
+        weatherView.hourlyWeatherForecasts = weatherForecasts
+        weatherView.hourlyCollectionView.reloadData()
+    }
+    
 }

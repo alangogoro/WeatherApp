@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -33,19 +32,19 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXg-sz-R5M">
                             <rect key="frame" x="8" y="10" width="398" height="20"/>
                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7A-g1-XmK">
                             <rect key="frame" x="8" y="45" width="398" height="20"/>
                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather Info Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNO-El-Ywc">
                             <rect key="frame" x="8" y="230" width="398" height="20"/>
                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIf-jq-cUx">
@@ -54,11 +53,11 @@
                                 <constraint firstAttribute="height" constant="95" id="xPN-PG-rb0"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="90"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="c7A-g1-XmK" firstAttribute="top" secondItem="qXg-sz-R5M" secondAttribute="bottom" constant="15" id="HYd-z2-8cw"/>
                         <constraint firstAttribute="height" constant="302" id="LLH-hn-7Dz"/>
@@ -76,19 +75,19 @@
                         <constraint firstItem="GNO-El-Ywc" firstAttribute="leading" secondItem="i3h-0E-ReE" secondAttribute="leading" constant="8" id="prs-qD-txa"/>
                     </constraints>
                 </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZOU-it-QrJ">
-                    <rect key="frame" x="0.0" y="302" width="414" height="672"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOU-it-QrJ">
+                    <rect key="frame" x="0.0" y="306" width="414" height="547"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DSN-iu-cHa">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="547"/>
                             <subviews>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Rzu-gm-d45">
                                     <rect key="frame" x="5" y="0.0" width="404" height="100"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="100" id="MRz-1h-s7F"/>
                                     </constraints>
-                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KUe-Zl-oFI">
+                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KUe-Zl-oFI">
                                         <size key="itemSize" width="80" height="100"/>
                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -97,26 +96,26 @@
                                 </collectionView>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="7LB-Em-OAT">
                                     <rect key="frame" x="5" y="104" width="404" height="80"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="X59-uj-Hst"/>
                                     </constraints>
-                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zBp-T4-A1T">
+                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zBp-T4-A1T">
                                         <size key="itemSize" width="80" height="80"/>
                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </collectionViewFlowLayout>
                                 </collectionView>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0ho-Up-1W5">
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0ho-Up-1W5">
                                     <rect key="frame" x="5" y="188" width="404" height="360"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="360" id="7Hz-BV-Mk8"/>
                                     </constraints>
                                 </tableView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemRedColor"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="Rzu-gm-d45" firstAttribute="leading" secondItem="DSN-iu-cHa" secondAttribute="leading" constant="5" id="CRQ-xd-UIs"/>
                                 <constraint firstAttribute="trailing" secondItem="0ho-Up-1W5" secondAttribute="trailing" constant="5" id="ChJ-l6-hNt"/>
@@ -131,8 +130,8 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemGreenColor"/>
                     <constraints>
+                        <constraint firstItem="4Uv-QR-rrE" firstAttribute="bottom" secondItem="DSN-iu-cHa" secondAttribute="bottom" id="66C-E8-EpE"/>
                         <constraint firstItem="DSN-iu-cHa" firstAttribute="width" secondItem="ZOU-it-QrJ" secondAttribute="width" id="7cd-pu-PJ3"/>
                         <constraint firstItem="DSN-iu-cHa" firstAttribute="leading" secondItem="4Uv-QR-rrE" secondAttribute="leading" id="9ZO-Z8-ZEc"/>
                         <constraint firstItem="DSN-iu-cHa" firstAttribute="top" secondItem="4Uv-QR-rrE" secondAttribute="top" id="KBk-aA-PFh"/>
@@ -154,22 +153,10 @@
                 <constraint firstItem="i3h-0E-ReE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Qbv-qm-Xyk"/>
                 <constraint firstItem="i3h-0E-ReE" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Xns-F7-poj"/>
                 <constraint firstItem="i3h-0E-ReE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bF0-QV-q7Q"/>
-                <constraint firstAttribute="bottom" secondItem="ZOU-it-QrJ" secondAttribute="bottom" id="tzY-aZ-oZg"/>
                 <constraint firstItem="ZOU-it-QrJ" firstAttribute="top" secondItem="i3h-0E-ReE" secondAttribute="bottom" constant="4" id="wu4-fu-8IV"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="57.971014492753625" y="83.705357142857139"/>
         </view>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
 </document>
