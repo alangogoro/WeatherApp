@@ -25,9 +25,9 @@ class WeatherView: UIView {
     
     // MARK: Vars
     var currentWeather: CurrentWeather!
+    var weahterInfos: [WeatherInfo] = []
     var weeklyWeatherForecasts: [WeeklyWeahterForecast] = []
     var hourlyWeatherForecasts: [HourlyForecast] = []
-    var weahterInfos: [WeatherInfo] = []
     
     // MARK: PropertyKets
     private let xib檔案名稱 = "WeatherView"

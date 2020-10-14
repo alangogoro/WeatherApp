@@ -46,14 +46,26 @@ class WeeklyWeahterForecast {
     }
     
     // 類別方法||下載週間預報
-    class func downloadWeeklyWeatherForecast(completion: @escaping (_ weatherForecast: [WeeklyWeahterForecast]) -> Void) {
+    class func downloadWeeklyWeatherForecast(location: WeatherLocation,
+                                             completion: @escaping (_ weatherForecast: [WeeklyWeahterForecast]) -> Void) {
         
-        // 檢查是否有結果 response 的型別是 <Any>
-        let weeklyForecast_url = "https://api.weatherbit.io/v2.0/forecast/daily?lang=zh-tw&city=Okinawa,JP&days=7&key=3ede3937df284270b1f10f8747aabb36"
+        
+        var weeklyForecast_url: String!
+        // 如果地點不是所在地（即使用者搜尋新的地點天氣資料）
+        if !location.isCurrentLocation {
+            weeklyForecast_url = String(format: "https://api.weatherbit.io/v2.0/forecast/daily?lang=zh-tw&city=%@,%@&days=7&key=3ede3937df284270b1f10f8747aabb36",
+                                        location.city, location.countryCode)
+            /* String(format: 字串格式規則, 欲取代的文字)
+             * %@ 置入取代文字的格式 */
+            print(weeklyForecast_url!)
+        } else {
+            weeklyForecast_url = CurrentLocationWeeklyForecast_url
+        }
         
         /* Alamofire request&response */
         AF.request(weeklyForecast_url).responseJSON { (response) in
             
+            // 檢查是否有結果 response 的型別是 <Any>
             let result = response.result
             // 承接預報陣列的結果
             var forecasts: [WeeklyWeahterForecast] = []

@@ -12,7 +12,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let currentWeather = CurrentWeather()
+        /*
+         let currentWeather = CurrentWeather()
         /* 只有在接收到 callback 結果（Bool）以後，才會執行 {} 裡的程式 */
         currentWeather.getCurrentWeather { (success) in
             if success {
@@ -29,6 +30,7 @@ class ViewController: UIViewController {
                 print("Forecast info: \(forecast.date) \(forecast.temp)")
             }
         }
+         */
         
     }
 

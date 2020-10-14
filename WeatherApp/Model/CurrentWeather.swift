@@ -11,10 +11,20 @@ import SwiftyJSON
 
 class CurrentWeather {
     
-    // 取得城市天氣資料
-    func getCurrentWeather(completion: @escaping (_ success: Bool) -> Void) {
+    /// 取得城市天氣資料
+    func getCurrentWeather(location: WeatherLocation,
+                           completion: @escaping (_ success: Bool) -> Void) {
         
-        let location_url = "https://api.weatherbit.io/v2.0/current?lang=zh-tw&city=Okinawa,JP&key=3ede3937df284270b1f10f8747aabb36"
+        var location_url: String!
+        // 如果地點不是所在地（即使用者搜尋新的地點天氣資料）
+        if !location.isCurrentLocation {
+            location_url = String(format: "https://api.weatherbit.io/v2.0/current?lang=zh-tw&city=%@,%@&key=3ede3937df284270b1f10f8747aabb36", location.city, location.countryCode)
+            /* String(format: 字串格式規則, 欲取代的文字)
+             * %@ 置入取代文字的格式 */
+            print(location_url!)
+        } else {
+            location_url = CurrentLocation_url
+        }
         
         /* Alamofire request&response */
         AF.request(location_url).responseJSON { (response) in

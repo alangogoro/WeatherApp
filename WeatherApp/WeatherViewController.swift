@@ -13,9 +13,14 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
+    var weatherLocation: WeatherLocation!
+    
     // MARK: ViewLifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        weatherLocation = WeatherLocation(city: "Okinawa", country: "Japan",
+                                          countryCode: "JP", isCurrentLocation: false)
         
     }
     
@@ -41,31 +46,31 @@ class WeatherViewController: UIViewController {
         getWeeklyWeather(weatherView: weatherView)
         getHourlyWeather(weatherView: weatherView)
     }
+    
+    // MARK: Download Weather
+    private func getCurrentWeather(weatherView: WeatherView) {
+        
+        weatherView.currentWeather = CurrentWeather()
+        weatherView.currentWeather.getCurrentWeather(location: weatherLocation) { (success) in
+            weatherView.refreshData()
+        }
+        
+    }
+    private func getWeeklyWeather(weatherView: WeatherView) {
+        
+        WeeklyWeahterForecast.downloadWeeklyWeatherForecast(location: weatherLocation) { (weatherForecasts) in
+            weatherView.weeklyWeatherForecasts = weatherForecasts
+            weatherView.tableView.reloadData()
+        }
+        
+    }
+    private func getHourlyWeather(weatherView: WeatherView) {
+        
+        HourlyForecast.downloadHourlyForecastWeather(location: weatherLocation) { (weatherForecasts) in
+            weatherView.hourlyWeatherForecasts = weatherForecasts
+            weatherView.hourlyCollectionView.reloadData()
+        }
+        
+    }
 
-}
-
-// MARK: Download Weather
-private func getCurrentWeather(weatherView: WeatherView) {
-    
-    weatherView.currentWeather = CurrentWeather()
-    weatherView.currentWeather.getCurrentWeather { (success) in
-        weatherView.refreshData()
-    }
-    
-}
-private func getWeeklyWeather(weatherView: WeatherView) {
-    
-    WeeklyWeahterForecast.downloadWeeklyWeatherForecast { (weatherForecasts) in
-        weatherView.weeklyWeatherForecasts = weatherForecasts
-        weatherView.tableView.reloadData()
-    }
-    
-}
-private func getHourlyWeather(weatherView: WeatherView) {
-    
-    HourlyForecast.downloadHourlyForecastWeather { (weatherForecasts) in
-        weatherView.hourlyWeatherForecasts = weatherForecasts
-        weatherView.hourlyCollectionView.reloadData()
-    }
-    
 }

@@ -49,9 +49,20 @@ class HourlyForecast {
     }
     
     // 類別方法||下載24小時預報
-    class func downloadHourlyForecastWeather(completion: @escaping (_ hourlyForecast: [HourlyForecast]) -> Void) {
+    class func downloadHourlyForecastWeather(location: WeatherLocation,
+                                             completion: @escaping (_ hourlyForecast: [HourlyForecast]) -> Void) {
         
-        let hourlyForecast_url = "https://api.weatherbit.io/v2.0/forecast/hourly?lang=zh-tw&city=Okinawa,JP&hours=24&key=3ede3937df284270b1f10f8747aabb36"
+        var hourlyForecast_url: String!
+        // 如果地點不是所在地（即使用者搜尋新的地點天氣資料）
+        if !location.isCurrentLocation {
+            hourlyForecast_url = String(format: "https://api.weatherbit.io/v2.0/forecast/hourly?lang=zh-tw&city=%@,%@&hours=24&key=3ede3937df284270b1f10f8747aabb36",
+                                  location.city, location.countryCode)
+            /* String(format: 字串格式規則, 欲取代的文字)
+             * %@ 置入取代文字的格式 */
+            print(hourlyForecast_url!)
+        } else {
+            hourlyForecast_url = CurrentLocationHourlyForecast_url
+        }
         
         /* Alamofire request&response */
         AF.request(hourlyForecast_url).responseJSON { (response) in

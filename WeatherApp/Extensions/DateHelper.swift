@@ -12,7 +12,7 @@ extension Date {
     /**
      將 Date 格式轉換成簡寫字串
      ```
-     Date.shortDate() -> "Oct 1"
+     Date.toShortDate() -> "Oct 1"
      ```
      */
     func toShortDate() -> String {
@@ -27,7 +27,7 @@ extension Date {
     /**
      將 Date 格式轉換成時刻字串
      ```
-     Date.time() -> "15:00"
+     Date.toTime() -> "15:00"
      ```
      */
     func toTime() -> String {
@@ -42,12 +42,13 @@ extension Date {
     /**
      將 Date 格式轉換成星期字串
      ```
-     Date.dayOfWeek() -> "Sunday"
+     Date.toDayOfWeek() -> "Sunday"
      ```
      */
     func toDayOfWeek() -> String {
         
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "zh_TW")
         dateFormatter.dateFormat = "EEEE"// EEEE星期幾
         let dfString = dateFormatter.string(from: self)
         return dfString
