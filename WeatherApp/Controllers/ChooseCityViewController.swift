@@ -15,6 +15,8 @@ class ChooseCityViewController: UIViewController {
     // MARK: Vars
     var locations: [WeatherLocation] = []
     var filteredLocations: [WeatherLocation] = []
+    let userDefaults = UserDefaults.standard
+    var savedLocations: [WeatherLocation]?
     private let reuseIdentifier = "FilteredCityCell"
     private let 檔案路徑 = "location"
     private let 格式 = "csv"
@@ -40,7 +42,7 @@ class ChooseCityViewController: UIViewController {
     private func loadLocationsFromSCV() {
         
         /* 取用專案 bundle 內的檔案
-                      Bundle.main.path(forResource: , ofType: ) */
+         Bundle.main.path(forResource: , ofType: ) */
         if let path = Bundle.main.path(forResource: 檔案路徑, ofType: 格式) {
             parseCSVAt(url: URL(fileURLWithPath: path))
         }
@@ -85,6 +87,7 @@ class ChooseCityViewController: UIViewController {
         locations.append(weatherLocation)
     }
     
+    // MARK: SearchController
     private func setupSearchController() {
         
         searchController.searchBar.placeholder = "搜尋都市或國家"
@@ -102,10 +105,35 @@ class ChooseCityViewController: UIViewController {
         searchController.searchBar.backgroundImage = UIImage()
     }
     
+    // MARK: UserDefaults
+    private func loadFromUserDefaults() {
+        
+        if let data = userDefaults.value(forKey: "Locations") as? Data {
+            //savedLocations = data
+        }
+        
+    }
+    private func saveToUserDefaults(location: WeatherLocation) {
+        
+        if savedLocations != nil {
+            /* 如果地點尚未被儲存過 */
+            /*                 .contains() 若要比對物件需要遵從 Equatable 協定 */
+            if !savedLocations!.contains(location) {
+                savedLocations!.append(location)
+            }
+            
+        } else {
+            savedLocations = [location]
+        }
+        
+        userDefaults.setValue(savedLocations, forKey: "Locations")
+        userDefaults.synchronize()
+        
+    }
 }
 
 
-// MARK: SearchResultUpdating
+// MARK: SearchBar -- UISearchResultUpdating
 extension ChooseCityViewController: UISearchResultsUpdating {
     
     func filterContentForSearchText(searchText: String,

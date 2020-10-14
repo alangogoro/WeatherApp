@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct WeatherLocation {
+/* 遵從 Equatable 協定才能比對2個物件是否相同 */
+struct WeatherLocation: Equatable {
     var city: String!
     var country: String!
     var countryCode: String!
