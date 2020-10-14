@@ -59,7 +59,6 @@ class HourlyForecast {
                                   location.city, location.countryCode)
             /* String(format: 字串格式規則, 欲取代的文字)
              * %@ 置入取代文字的格式 */
-            print(hourlyForecast_url!)
         } else {
             hourlyForecast_url = CurrentLocationHourlyForecast_url
         }

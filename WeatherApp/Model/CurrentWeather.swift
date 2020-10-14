@@ -21,7 +21,6 @@ class CurrentWeather {
             location_url = String(format: "https://api.weatherbit.io/v2.0/current?lang=zh-tw&city=%@,%@&key=3ede3937df284270b1f10f8747aabb36", location.city, location.countryCode)
             /* String(format: 字串格式規則, 欲取代的文字)
              * %@ 置入取代文字的格式 */
-            print(location_url!)
         } else {
             location_url = CurrentLocation_url
         }

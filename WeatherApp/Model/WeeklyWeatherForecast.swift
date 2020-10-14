@@ -57,7 +57,6 @@ class WeeklyWeahterForecast {
                                         location.city, location.countryCode)
             /* String(format: 字串格式規則, 欲取代的文字)
              * %@ 置入取代文字的格式 */
-            print(weeklyForecast_url!)
         } else {
             weeklyForecast_url = CurrentLocationWeeklyForecast_url
         }

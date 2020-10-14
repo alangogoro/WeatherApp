@@ -19,12 +19,17 @@ class ChooseCityViewController: UIViewController {
     private let 檔案路徑 = "location"
     private let 格式 = "csv"
     
-    // MARK: 搜尋列|| Search Controller
+    // MARK: 搜尋欄|| Search Controller
     let searchController = UISearchController(searchResultsController: nil)
     
-    
+    // MARK: View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupSearchController()
+        /* ⭐️ 將 SearchBar 指定為 TableView 的 Header ⭐️ */
+        tableView.tableHeaderView = searchController.searchBar
+        tableView.tableFooterView = UIView()
         
         loadLocationsFromSCV()
         
@@ -78,6 +83,23 @@ class ChooseCityViewController: UIViewController {
                                               countryCode: line[2],//可寫成 .last!
                                               isCurrentLocation: false)
         locations.append(weatherLocation)
+    }
+    
+    private func setupSearchController() {
+        
+        searchController.searchBar.placeholder = "搜尋國家或地區"
+        /*              .searchResultsUpdater 搜尋結果的承接對象 */
+        //searchController.searchResultsUpdater = self
+        /* 出現搜尋結果時是否淡化搜尋欄 */
+        searchController.dimsBackgroundDuringPresentation = false
+        /* 出現搜尋結果時覆蓋效果... */
+        definesPresentationContext = true
+        
+        /* 永遠顯示搜尋欄 */
+        searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
+        /* 搜尋欄大小自動調整 */
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.backgroundImage = UIImage()
     }
     
 }

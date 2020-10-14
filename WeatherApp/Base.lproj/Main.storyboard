@@ -125,7 +125,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qio-b6-uuS">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilteredCityCell" textLabel="FXl-Br-Rdq" detailTextLabel="RKB-ud-Mdt" style="IBUITableViewCellStyleSubtitle" id="2Xy-aU-t6e">
                                         <rect key="frame" x="0.0" y="28" width="375" height="55.5"/>
@@ -159,7 +159,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4ho-VY-G2f"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Qio-b6-uuS" firstAttribute="leading" secondItem="4ho-VY-G2f" secondAttribute="leading" id="c3r-4q-lG4"/>
                             <constraint firstItem="Qio-b6-uuS" firstAttribute="top" secondItem="4ho-VY-G2f" secondAttribute="top" id="n7Q-iT-EJc"/>
