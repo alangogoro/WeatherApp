@@ -87,15 +87,15 @@ class ChooseCityViewController: UIViewController {
     
     private func setupSearchController() {
         
-        searchController.searchBar.placeholder = "搜尋國家或地區"
+        searchController.searchBar.placeholder = "搜尋都市或國家"
         /*              .searchResultsUpdater 搜尋結果的承接對象 */
-        //searchController.searchResultsUpdater = self
+        searchController.searchResultsUpdater = self
         /* 出現搜尋結果時是否淡化搜尋欄 */
         searchController.dimsBackgroundDuringPresentation = false
         /* 出現搜尋結果時覆蓋效果... */
         definesPresentationContext = true
         
-        /* 永遠顯示搜尋欄 */
+        /* 永遠/短暫顯示搜尋欄 */
         searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
         /* 搜尋欄大小自動調整 */
         searchController.searchBar.sizeToFit()
@@ -105,6 +105,28 @@ class ChooseCityViewController: UIViewController {
 }
 
 
+// MARK: SearchResultUpdating
+extension ChooseCityViewController: UISearchResultsUpdating {
+    
+    func filterContentForSearchText(searchText: String,
+                                    scope: String = "All") {
+        
+        /* 利用搜尋文字篩選並回傳符合條件的地點 */
+        filteredLocations = locations.filter({ (location) -> Bool in
+            
+            return location.city.lowercased().contains(searchText.lowercased()) || location.country.lowercased().contains(searchText.lowercased())
+            
+        })
+        tableView.reloadData()
+        
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
+    }
+    
+}
+
 // MARK: TableView Delegates
 extension ChooseCityViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -112,6 +134,11 @@ extension ChooseCityViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        
+        let location = filteredLocations[indexPath.row]
+        cell.textLabel?.text = location.city
+        cell.detailTextLabel?.text = location.country
+        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
