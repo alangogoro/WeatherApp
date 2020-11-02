@@ -34,7 +34,7 @@ class ChooseCityViewController: UIViewController {
         tableView.tableFooterView = UIView()
         
         loadLocationsFromSCV()
-        
+        loadFromUserDefaults()
     }
     
     // MARK: Get Locations
@@ -109,8 +109,9 @@ class ChooseCityViewController: UIViewController {
     private func loadFromUserDefaults() {
         
         if let data = userDefaults.value(forKey: "Locations") as? Data {
-            //savedLocations = data
+            savedLocations = try? PropertyListDecoder().decode([WeatherLocation].self, from: data)
         }
+        print(savedLocations?.first?.country)
         
     }
     private func saveToUserDefaults(location: WeatherLocation) {
@@ -126,7 +127,9 @@ class ChooseCityViewController: UIViewController {
             savedLocations = [location]
         }
         
-        userDefaults.setValue(savedLocations, forKey: "Locations")
+        /* 利用 PropertyListEncoder 編碼後才能放入 UserDufaults */
+        let value = try? PropertyListEncoder().encode(savedLocations)
+        userDefaults.setValue(value, forKey: "Locations")
         userDefaults.synchronize()
         
     }
@@ -170,7 +173,10 @@ extension ChooseCityViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Save location
+        /* 儲存天氣地點 */
+        // 取消被選取的 row 動畫
+        tableView.deselectRow(at: indexPath, animated: true)
         
+        saveToUserDefaults(location: filteredLocations[indexPath.row])
     }
 }
