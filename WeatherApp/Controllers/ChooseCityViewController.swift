@@ -33,8 +33,16 @@ class ChooseCityViewController: UIViewController {
         tableView.tableHeaderView = searchController.searchBar
         tableView.tableFooterView = UIView()
         
+        setupTapGesture()
         loadLocationsFromSCV()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         loadFromUserDefaults()
+        
     }
     
     // MARK: Get Locations
@@ -111,7 +119,7 @@ class ChooseCityViewController: UIViewController {
         if let data = userDefaults.value(forKey: "Locations") as? Data {
             savedLocations = try? PropertyListDecoder().decode([WeatherLocation].self, from: data)
         }
-        print(savedLocations?.first?.country)
+        print(savedLocations?.last?.city ?? "UserDefaluts 沒有 WeatherLocation")
         
     }
     private func saveToUserDefaults(location: WeatherLocation) {
@@ -133,6 +141,27 @@ class ChooseCityViewController: UIViewController {
         userDefaults.synchronize()
         
     }
+    
+    // MARK: Gesture 設置手勢
+    private func setupTapGesture() {
+        /* 定義 UIGestureRecognizer 手勢並加入到 TableView 的背景 view 上 */
+        let tap = UIGestureRecognizer(target: self, action: #selector(tableTapped))
+        self.tableView.backgroundView = UIView()
+        self.tableView.backgroundView?.addGestureRecognizer(tap)
+    }
+    @objc func tableTapped() {
+        
+        /* 若在搜尋狀態，dismiss 掉搜尋結果列和本頁 */
+        if searchController.isActive {
+            searchController.dismiss(animated: true) {
+                self.dismiss(animated: true)
+            }
+        } else {
+            self.dismiss(animated: true)
+        }
+        
+    }
+    
 }
 
 
@@ -160,11 +189,14 @@ extension ChooseCityViewController: UISearchResultsUpdating {
 
 // MARK: TableView Delegates
 extension ChooseCityViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredLocations.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier,
+                                                 for: indexPath)
         
         let location = filteredLocations[indexPath.row]
         cell.textLabel?.text = location.city
@@ -172,11 +204,23 @@ extension ChooseCityViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         /* 儲存天氣地點 */
-        // 取消被選取的 row 動畫
+        // 取消 row 被選取的動畫
         tableView.deselectRow(at: indexPath, animated: true)
         
         saveToUserDefaults(location: filteredLocations[indexPath.row])
+        
+        /* 若在搜尋狀態，dismiss 掉搜尋結果列和本頁 */
+        if searchController.isActive {
+            searchController.dismiss(animated: true) {
+                self.dismiss(animated: true)
+            }
+        } else {
+            self.dismiss(animated: true)
+        }
+        
     }
+    
 }
