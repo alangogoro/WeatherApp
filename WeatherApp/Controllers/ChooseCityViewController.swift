@@ -108,8 +108,9 @@ class ChooseCityViewController: UIViewController {
         searchController.searchBar.placeholder = "搜尋都市或國家"
         /*              .searchResultsUpdater 搜尋結果的承接對象 */
         searchController.searchResultsUpdater = self
-        /* 出現搜尋結果時是否淡化搜尋欄 */
-        searchController.dimsBackgroundDuringPresentation = false
+        /* 出現搜尋結果時是否糊化搜尋欄 */
+        searchController.obscuresBackgroundDuringPresentation = false
+        //searchController.dimsBackgroundDuringPresentation = false//Deprecated in iOS 12
         /* 出現搜尋結果時覆蓋效果... */
         definesPresentationContext = true
         

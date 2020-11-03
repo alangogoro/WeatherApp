@@ -11,6 +11,7 @@ class AllLocationsTableViewController: UITableViewController {
     
     // MARK: Vars
     var savedLocations: [WeatherLocation]?
+    var weatherData: [CityTempData]?
     
     private let reuseIdentifier = "Cell"
     private let segueId = "ChooseCitySegue"
@@ -23,17 +24,37 @@ class AllLocationsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return weatherData?.count ?? 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier,
-                                                 for: indexPath)
-
-        // Configure the cell...
-
+                                                 for: indexPath) as! MainWeatherTableViewCell
+        if weatherData != nil {
+            cell.generateCell(weatherData: weatherData![indexPath.row])
+        }
         return cell
+    }
+    
+    // MARK: TableViewDelegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    }
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // 第一行（本地城市不能被刪除，其它可以）
+        return indexPath.row != 0
+    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            let locationToDelete = weatherData?[indexPath.row]
+            weatherData?.remove(at: indexPath.row)
+            
+            /* 從 UserDefaults 刪除地點 */
+            tableView.reloadData()
+        }
+        
     }
     
     // MARK: 使用 UserDefaults
