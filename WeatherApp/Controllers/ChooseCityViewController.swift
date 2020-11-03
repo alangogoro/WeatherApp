@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ChooseCityViewControllerDelegate {
+    func didAdd(newLocation: WeatherLocation)
+}
+
 class ChooseCityViewController: UIViewController {
     
     // MARK: IBOutlets
@@ -17,6 +21,9 @@ class ChooseCityViewController: UIViewController {
     var filteredLocations: [WeatherLocation] = []
     let userDefaults = UserDefaults.standard
     var savedLocations: [WeatherLocation]?
+    // 代理變數（前一頁的城市天氣列表）
+    var delegate: ChooseCityViewControllerDelegate?
+    
     private let reuseIdentifier = "FilteredCityCell"
     private let 檔案路徑 = "location"
     private let 格式 = "csv"
@@ -150,7 +157,6 @@ class ChooseCityViewController: UIViewController {
         self.tableView.backgroundView?.addGestureRecognizer(tap)
     }
     @objc func tableTapped() {
-        
         /* 若在搜尋狀態，dismiss 掉搜尋結果列和本頁 */
         if searchController.isActive {
             searchController.dismiss(animated: true) {
@@ -159,7 +165,6 @@ class ChooseCityViewController: UIViewController {
         } else {
             self.dismiss(animated: true)
         }
-        
     }
     
 }
@@ -211,6 +216,8 @@ extension ChooseCityViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         saveToUserDefaults(location: filteredLocations[indexPath.row])
+        // 呼喚代理更新地點列表
+        delegate?.didAdd(newLocation: filteredLocations[indexPath.row])
         
         /* 若在搜尋狀態，dismiss 掉搜尋結果列和本頁 */
         if searchController.isActive {
