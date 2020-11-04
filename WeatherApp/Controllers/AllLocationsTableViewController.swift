@@ -12,6 +12,7 @@ class AllLocationsTableViewController: UITableViewController {
     // MARK: Vars
     var savedLocations: [WeatherLocation]?
     var weatherData: [CityTempData]?
+    var userDefaults = UserDefaults.standard
     
     private let reuseIdentifier = "Cell"
     private let segueId = "ChooseCitySegue"
@@ -52,15 +53,40 @@ class AllLocationsTableViewController: UITableViewController {
             weatherData?.remove(at: indexPath.row)
             
             /* 從 UserDefaults 刪除地點 */
+            removeLocationAndSave(city: locationToDelete!.city)
             tableView.reloadData()
         }
+        
+    }
+    private func removeLocationAndSave(city: String) {
+        
+        if savedLocations != nil {
+            for i in 0..<savedLocations!.count {
+                let location = savedLocations![i]
+                if location.city == city {
+                    
+                    savedLocations!.remove(at: i)
+                    saveLocationsToUserDefaults()
+                    
+                    return
+                }
+            }
+        }
+        
+    }
+    private func saveLocationsToUserDefaults() {
+        /* 儲存至 UserDefaults 必須先用 PropertyListEncoder 編碼 */
+        let value = try? PropertyListEncoder().encode(savedLocations!)
+        userDefaults.setValue(value, forKey: "Locations")
+        /*          .synchronize() */
+        userDefaults.synchronize()
         
     }
     
     // MARK: 使用 UserDefaults
     private func loadFromUserDefaults() {
         
-        if let data = UserDefaults.standard.value(forKey: "Locations") as? Data {
+        if let data = userDefaults.value(forKey: "Locations") as? Data {
             savedLocations = try? PropertyListDecoder().decode([WeatherLocation].self, from: data)
         }
         print("UserDefaluts 中有\(savedLocations?.count ?? 0)筆 WeatherLocation")
