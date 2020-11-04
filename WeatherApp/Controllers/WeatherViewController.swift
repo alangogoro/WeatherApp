@@ -66,29 +66,65 @@ class WeatherViewController: UIViewController {
     private func getWeather() {
         
         loadLocationsFromUserDefaults()
-        print("共有 \(allLocations.count) 個城市天氣資料")
+        createWeatherViews()
+        addWeatherToScrollView()
         
     }
     
-    private func getCurrentWeather(weatherView: WeatherView) {
+    private func createWeatherViews() {
+        
+        for _ in allLocations {
+            allWeatherViews.append(WeatherView())
+        }
+        
+    }
+    
+    private func addWeatherToScrollView() {
+        
+        for i in 0..<allWeatherViews.count {
+            /* 將每一個 Location 的資料設置到每一個 WeatherView 中 */
+            let weatherView = allWeatherViews[i]
+            let location = allLocations[i]
+            
+            getCurrentWeather(weatherView: weatherView, location: location)
+            getWeeklyWeather(weatherView: weatherView, location: location)
+            getHourlyWeather(weatherView: weatherView, location: location)
+            
+            /* 把每一個 WeahterView 設定好畫面位置，addSubview 到 ScrollView 中
+             * 最後定義 ScrollView 的內容寬度 */
+            let xPosition = self.view.frame.width * CGFloat(i)
+            
+            weatherView.frame = CGRect(x: xPosition, y: 0,
+                                       width: scrollView.bounds.width,
+                                       height: scrollView.bounds.height)
+            scrollView.addSubview(weatherView)
+            
+            scrollView.contentSize.width = weatherView.frame.width * CGFloat(i + 1)
+            // i + 1 是讓每一張 WeatherView 之間保留間隔，視覺上不會黏在一起
+        }
+        
+    }
+    
+    
+    private func getCurrentWeather(weatherView: WeatherView, location: WeatherLocation) {
         
         weatherView.currentWeather = CurrentWeather()
-        weatherView.currentWeather.getCurrentWeather(location: weatherLocation) { (success) in
+        weatherView.currentWeather.getCurrentWeather(location: location) { (success) in
             weatherView.refreshData()
         }
         
     }
-    private func getWeeklyWeather(weatherView: WeatherView) {
+    private func getWeeklyWeather(weatherView: WeatherView, location: WeatherLocation) {
         
-        WeeklyWeahterForecast.downloadWeeklyWeatherForecast(location: weatherLocation) { (weatherForecasts) in
+        WeeklyWeahterForecast.downloadWeeklyWeatherForecast(location: location) { (weatherForecasts) in
             weatherView.weeklyWeatherForecasts = weatherForecasts
             weatherView.tableView.reloadData()
         }
         
     }
-    private func getHourlyWeather(weatherView: WeatherView) {
+    private func getHourlyWeather(weatherView: WeatherView, location: WeatherLocation) {
         
-        HourlyForecast.downloadHourlyForecastWeather(location: weatherLocation) { (weatherForecasts) in
+        HourlyForecast.downloadHourlyForecastWeather(location: location) { (weatherForecasts) in
             weatherView.hourlyWeatherForecasts = weatherForecasts
             weatherView.hourlyCollectionView.reloadData()
         }
