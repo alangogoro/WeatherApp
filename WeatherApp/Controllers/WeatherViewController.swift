@@ -54,6 +54,10 @@ class WeatherViewController: UIViewController {
     }
     
     // MARK: Download Weather
+    private func getWeather() {
+        
+    }
+    
     private func getCurrentWeather(weatherView: WeatherView) {
         
         weatherView.currentWeather = CurrentWeather()
@@ -80,7 +84,7 @@ class WeatherViewController: UIViewController {
     }
     
     // MARK: LocationManager
-    private func loactionManagerStart() {
+    private func locationManagerStart() {
         
         if locationManager == nil {
             /* 建立 CLLocationManager 並設置定位精確度（最高） */
@@ -96,13 +100,47 @@ class WeatherViewController: UIViewController {
             
             locationManager!.delegate = self
         }
-        /* 監聽定位的位置更新 */
+        /* 開始監聽定位的更新
+         * 有開始就要設定結束，避免離開 app 仍在消耗電量 */
         locationManager!.startMonitoringSignificantLocationChanges()
+        
+    }
+    
+    private func locationManagerStop() {
+        /* 若有 LocationManager，停止監聽定位 */
+        if locationManager != nil {
+            locationManager!.stopMonitoringSignificantLocationChanges()
+        }
+    }
+    /// 確認已取得定位權限授權
+    private func locationAuthCheck() {
+        
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            /* 依照定位設置當前位置 */
+            currentLocation = locationManager!.location?.coordinate
+            
+            if currentLocation != nil {
+                LocationService.shared.latitude = currentLocation.latitude
+                LocationService.shared.logitude = currentLocation.longitude
+                
+                getWeather()
+            } else {
+                locationAuthCheck()
+            }
+        } else {
+            locationManager?.requestWhenInUseAuthorization()
+            locationAuthCheck()
+        }
         
     }
 }
 
 
 extension WeatherViewController: CLLocationManagerDelegate {
+    
+    /* 如果無法取得定位，印出錯誤訊息 */
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("取得定位失敗。\(error.localizedDescription)")
+    }
     
 }
