@@ -17,8 +17,14 @@ class WeatherViewController: UIViewController {
     var weatherLocation: WeatherLocation!
     
     // MARK: Vars
+    let userDefaults = UserDefaults.standard
+    
     var locationManager: CLLocationManager?
     var currentLocation: CLLocationCoordinate2D! // 使用者當前座標
+    
+    var allLocations: [WeatherLocation] = []
+    var allWeatherViews: [WeatherView] = []
+    var allWeatherData: [CityTempData] = []
     
     // MARK: ViewLifecycle
     override func viewDidLoad() {
@@ -31,6 +37,8 @@ class WeatherViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        locationAuthCheck()
         
         /* 在畫面大小確定後，加入 xib view
          * 大小設定為和 ScrollView 一樣 */
@@ -53,8 +61,12 @@ class WeatherViewController: UIViewController {
 //        getHourlyWeather(weatherView: weatherView)
     }
     
+    
     // MARK: Download Weather
     private func getWeather() {
+        
+        loadLocationsFromUserDefaults()
+        print("共有 \(allLocations.count) 個城市天氣資料")
         
     }
     
@@ -79,6 +91,22 @@ class WeatherViewController: UIViewController {
         HourlyForecast.downloadHourlyForecastWeather(location: weatherLocation) { (weatherForecasts) in
             weatherView.hourlyWeatherForecasts = weatherForecasts
             weatherView.hourlyCollectionView.reloadData()
+        }
+        
+    }
+    
+    // MARK: Load Locations from UserDefaults
+    private func loadLocationsFromUserDefaults() {
+        
+        let currentLocation = WeatherLocation(city: "", country: "", countryCode: "", isCurrentLocation: true)
+        
+        if let data = userDefaults.value(forKey: "Locations") as? Data {
+            allLocations = try! PropertyListDecoder().decode([WeatherLocation].self, from: data)
+            /* 將目前的城市天氣放在第1筆 */
+            allLocations.insert(currentLocation, at: 0)
+        } else {
+            print("UserDefaults 中沒有 Data")
+            allLocations.append(currentLocation)
         }
         
     }
