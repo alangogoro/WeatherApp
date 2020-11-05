@@ -29,8 +29,9 @@ class WeatherViewController: UIViewController {
     // MARK: ViewLifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // 開始監聽定位
         locationManagerStart()
+        scrollView.delegate = self
         
 //        weatherLocation = WeatherLocation(city: "Okinawa", country: "Japan",
 //                                          countryCode: "JP", isCurrentLocation: false)
@@ -61,6 +62,13 @@ class WeatherViewController: UIViewController {
 //        getHourlyWeather(weatherView: weatherView)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super .viewWillDisappear(animated)
+        // 停止監聽定位
+        locationManagerStop()
+        
+    }
+    
     
     // MARK: Download Weather
     private func getWeather() {
@@ -68,6 +76,7 @@ class WeatherViewController: UIViewController {
         loadLocationsFromUserDefaults()
         createWeatherViews()
         addWeatherToScrollView()
+        setPageControlPageNumber()
         
     }
     
@@ -131,6 +140,7 @@ class WeatherViewController: UIViewController {
         
     }
     
+    
     // MARK: Load Locations from UserDefaults
     private func loadLocationsFromUserDefaults() {
         
@@ -145,6 +155,14 @@ class WeatherViewController: UIViewController {
             allLocations.append(currentLocation)
         }
         
+    }
+    
+    // MARK: 設定 PageControl 的屬性（頁數）
+    private func setPageControlPageNumber() {
+        pageControl.numberOfPages = allWeatherViews.count
+    }
+    private func updatePageControlSelectedPage(currentPage: Int) {
+        pageControl.currentPage = currentPage
     }
     
     // MARK: LocationManager
@@ -176,7 +194,7 @@ class WeatherViewController: UIViewController {
             locationManager!.stopMonitoringSignificantLocationChanges()
         }
     }
-    /// 確認已取得定位權限授權
+    /// 確認已取得定位授權，並設置為目前位置
     private func locationAuthCheck() {
         
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
@@ -205,6 +223,16 @@ extension WeatherViewController: CLLocationManagerDelegate {
     /* 如果無法取得定位，印出錯誤訊息 */
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("取得定位失敗。\(error.localizedDescription)")
+    }
+    
+}
+
+extension WeatherViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        /* 每當滑動時取得 ScrollView 當前的 X 位置，隨之更新 PageControl */
+        let value = scrollView.contentOffset.x / scrollView.frame.size.width
+        updatePageControlSelectedPage(currentPage: Int(round(value)))
     }
     
 }
