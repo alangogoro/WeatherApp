@@ -26,6 +26,7 @@ class WeatherViewController: UIViewController {
     var allWeatherViews: [WeatherView] = []
     var allWeatherData: [CityTempData] = []
     
+    
     // MARK: ViewLifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,6 +121,8 @@ class WeatherViewController: UIViewController {
         weatherView.currentWeather = CurrentWeather()
         weatherView.currentWeather.getCurrentWeather(location: location) { (success) in
             weatherView.refreshData()
+            
+            self.generateWeahterList()
         }
         
     }
@@ -214,6 +217,19 @@ class WeatherViewController: UIViewController {
             locationAuthCheck()
         }
         
+    }
+    
+    private func generateWeahterList() {
+        // 清空陣列避免重複累加資料
+        allWeatherData = []
+        
+        for weatherView in allWeatherViews {
+            
+            let tempData = CityTempData(city: weatherView.currentWeather.city,
+                                        temp: weatherView.currentWeather.currentTemp)
+            allWeatherData.append(tempData)
+            
+        }
     }
 }
 
