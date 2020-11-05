@@ -35,7 +35,7 @@
                                     <barButtonItem systemItem="add" id="Odv-zp-km3">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <segue destination="93m-Wn-8Xp" kind="show" id="Krg-WZ-9K9"/>
+                                            <segue destination="93m-Wn-8Xp" kind="show" identifier="allLocationsSegue" id="Krg-WZ-9K9"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

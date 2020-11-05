@@ -48,7 +48,6 @@ class AllLocationsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            
             let locationToDelete = weatherData?[indexPath.row]
             weatherData?.remove(at: indexPath.row)
             

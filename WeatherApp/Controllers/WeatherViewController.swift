@@ -26,6 +26,8 @@ class WeatherViewController: UIViewController {
     var allWeatherViews: [WeatherView] = []
     var allWeatherData: [CityTempData] = []
     
+    let segueId = "allLocationsSegue"
+    
     
     // MARK: ViewLifecycle
     override func viewDidLoad() {
@@ -229,6 +231,14 @@ class WeatherViewController: UIViewController {
                                         temp: weatherView.currentWeather.currentTemp)
             allWeatherData.append(tempData)
             
+        }
+    }
+    
+    // MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == segueId {
+            let controller = segue.destination as! AllLocationsTableViewController
+            controller.weatherData = allWeatherData
         }
     }
 }

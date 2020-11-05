@@ -55,6 +55,7 @@ class CurrentWeather {
                 self._sunset = json["data"][0]["sunset"].stringValue
                 completion(true)
             case .failure(let error):
+                self._city = location.city
                 completion(false)
                 print(error)
             }
