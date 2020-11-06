@@ -43,7 +43,7 @@
                             </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Vc4-od-T4w" firstAttribute="top" secondItem="anW-wx-4eI" secondAttribute="bottom" id="28e-Nz-djp"/>
                             <constraint firstItem="Vc4-od-T4w" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Qgs-Eh-Yww"/>
@@ -75,22 +75,39 @@
                             <rect key="frame" x="0.0" y="136" width="375" height="55"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mer-q6-fFR">
-                                    <rect key="frame" x="292" y="12.5" width="75" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mer-q6-fFR">
+                                    <rect key="frame" x="327" y="7.5" width="40" height="40"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="30" id="Ylv-b1-jSv"/>
-                                        <constraint firstAttribute="width" constant="75" id="ffg-ro-2iV"/>
+                                        <constraint firstAttribute="height" constant="40" id="Ylv-b1-jSv"/>
+                                        <constraint firstAttribute="width" constant="40" id="ffg-ro-2iV"/>
                                     </constraints>
-                                    <state key="normal" title="Add"/>
+                                    <state key="normal" image="add"/>
                                     <connections>
                                         <segue destination="Jnf-mU-VyD" kind="show" identifier="ChooseCitySegue" id="Tbh-gI-CFj"/>
                                     </connections>
                                 </button>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PhM-Ne-5CQ">
+                                    <rect key="frame" x="8" y="12" width="135" height="32"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="135" id="mRa-Ih-HGO"/>
+                                    </constraints>
+                                    <segments>
+                                        <segment title="°C"/>
+                                        <segment title="°F"/>
+                                    </segments>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <connections>
+                                        <action selector="tempSegmentValueChanged:" destination="93m-Wn-8Xp" eventType="valueChanged" id="rsm-vS-1Zq"/>
+                                    </connections>
+                                </segmentedControl>
                             </subviews>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="Mer-q6-fFR" firstAttribute="centerY" secondItem="QZW-JI-ldJ" secondAttribute="centerY" id="ChZ-ae-vly"/>
+                                <constraint firstItem="PhM-Ne-5CQ" firstAttribute="leading" secondItem="QZW-JI-ldJ" secondAttribute="leading" constant="8" id="RDS-Lh-uoQ"/>
                                 <constraint firstAttribute="trailing" secondItem="Mer-q6-fFR" secondAttribute="trailing" constant="8" id="fz3-JJ-v9V"/>
+                                <constraint firstItem="PhM-Ne-5CQ" firstAttribute="centerY" secondItem="QZW-JI-ldJ" secondAttribute="centerY" id="uaC-fO-RG9"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -138,6 +155,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="92d-hR-0k7"/>
+                    <connections>
+                        <outlet property="footerView" destination="QZW-JI-ldJ" id="SDF-mq-BzJ"/>
+                        <outlet property="tempSegmentedControl" destination="PhM-Ne-5CQ" id="vbr-io-YdY"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xFm-ie-YxM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -205,4 +226,7 @@
             <point key="canvasLocation" x="1632.8" y="71.514242878560722"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="add" width="30" height="30"/>
+    </resources>
 </document>

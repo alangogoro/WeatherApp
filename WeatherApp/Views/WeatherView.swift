@@ -100,7 +100,10 @@ class WeatherView: UIView {
     private func setupCurrentWeather() {
         cityNameLabel.text = currentWeather.city
         dateLabel.text = "Today, \(currentWeather.date.toShortDate())"
-        tempLabel.text = "\(currentWeather.currentTemp)"
+                                      /* %.0f：小數點後一位；%@字串（°C或°F）*/
+        tempLabel.text = String(format: "%.0f%@",
+                                currentWeather.currentTemp,
+                                returnTempFormatFromUserDefaults())
         weatherInfoLabel.text = currentWeather.weatherType
     }
     /// 更新天氣資訊

@@ -47,7 +47,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIf-jq-cUx">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIf-jq-cUx">
                             <rect key="frame" x="8" y="120" width="398" height="95"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="95" id="xPN-PG-rb0"/>
@@ -75,8 +75,8 @@
                         <constraint firstItem="GNO-El-Ywc" firstAttribute="leading" secondItem="i3h-0E-ReE" secondAttribute="leading" constant="8" id="prs-qD-txa"/>
                     </constraints>
                 </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOU-it-QrJ">
-                    <rect key="frame" x="0.0" y="306" width="414" height="547"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOU-it-QrJ">
+                    <rect key="frame" x="0.0" y="306" width="414" height="634"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DSN-iu-cHa">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="547"/>
@@ -111,7 +111,7 @@
                                     <rect key="frame" x="5" y="188" width="404" height="360"/>
                                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="360" id="7Hz-BV-Mk8"/>
+                                        <constraint firstAttribute="height" constant="360" id="ucu-RO-wqb"/>
                                     </constraints>
                                 </tableView>
                             </subviews>
@@ -131,16 +131,12 @@
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="4Uv-QR-rrE" firstAttribute="bottom" secondItem="DSN-iu-cHa" secondAttribute="bottom" id="66C-E8-EpE"/>
                         <constraint firstItem="DSN-iu-cHa" firstAttribute="width" secondItem="ZOU-it-QrJ" secondAttribute="width" id="7cd-pu-PJ3"/>
-                        <constraint firstItem="DSN-iu-cHa" firstAttribute="leading" secondItem="4Uv-QR-rrE" secondAttribute="leading" id="9ZO-Z8-ZEc"/>
-                        <constraint firstItem="DSN-iu-cHa" firstAttribute="top" secondItem="4Uv-QR-rrE" secondAttribute="top" id="KBk-aA-PFh"/>
-                        <constraint firstItem="DSN-iu-cHa" firstAttribute="bottom" secondItem="4Uv-QR-rrE" secondAttribute="bottom" id="L4w-Nb-DRY"/>
-                        <constraint firstItem="DSN-iu-cHa" firstAttribute="trailing" secondItem="4Uv-QR-rrE" secondAttribute="trailing" id="Zzs-wP-tsu"/>
-                        <constraint firstItem="DSN-iu-cHa" firstAttribute="top" secondItem="4Uv-QR-rrE" secondAttribute="top" id="eTX-FT-mYy"/>
-                        <constraint firstItem="DSN-iu-cHa" firstAttribute="trailing" secondItem="4Uv-QR-rrE" secondAttribute="trailing" id="on1-b4-O7F"/>
-                        <constraint firstItem="DSN-iu-cHa" firstAttribute="leading" secondItem="4Uv-QR-rrE" secondAttribute="leading" id="x2y-EV-wxD"/>
-                        <constraint firstItem="DSN-iu-cHa" firstAttribute="height" secondItem="ZOU-it-QrJ" secondAttribute="height" multiplier="0.813988" priority="250" id="xst-zp-b1K"/>
+                        <constraint firstAttribute="bottom" secondItem="DSN-iu-cHa" secondAttribute="bottom" id="L4w-Nb-DRY"/>
+                        <constraint firstItem="DSN-iu-cHa" firstAttribute="top" secondItem="ZOU-it-QrJ" secondAttribute="top" id="eTX-FT-mYy"/>
+                        <constraint firstAttribute="trailing" secondItem="DSN-iu-cHa" secondAttribute="trailing" id="on1-b4-O7F"/>
+                        <constraint firstItem="DSN-iu-cHa" firstAttribute="leading" secondItem="ZOU-it-QrJ" secondAttribute="leading" id="x2y-EV-wxD"/>
+                        <constraint firstItem="DSN-iu-cHa" firstAttribute="height" secondItem="ZOU-it-QrJ" secondAttribute="height" priority="250" id="xst-zp-b1K"/>
                     </constraints>
                     <viewLayoutGuide key="contentLayoutGuide" id="vy1-6D-Eet"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="4Uv-QR-rrE"/>
@@ -153,6 +149,7 @@
                 <constraint firstItem="ZOU-it-QrJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="MAM-Cq-9eP"/>
                 <constraint firstItem="i3h-0E-ReE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Qbv-qm-Xyk"/>
                 <constraint firstItem="i3h-0E-ReE" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Xns-F7-poj"/>
+                <constraint firstItem="ZOU-it-QrJ" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="YZ8-ao-MRC"/>
                 <constraint firstItem="i3h-0E-ReE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bF0-QV-q7Q"/>
                 <constraint firstItem="ZOU-it-QrJ" firstAttribute="top" secondItem="i3h-0E-ReE" secondAttribute="bottom" constant="4" id="wu4-fu-8IV"/>
             </constraints>

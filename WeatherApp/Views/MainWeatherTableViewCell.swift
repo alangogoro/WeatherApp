@@ -22,8 +22,9 @@ class MainWeatherTableViewCell: UITableViewCell {
     func generateCell(weatherData: CityTempData) {
         cityLabel.text = weatherData.city
         tempLabel.adjustsFontSizeToFitWidth = true
-        tempLabel.text = String(format: "%.0f %@", weatherData.temp, "°C")
-        // TODO: 讓溫度文字可以隨攝氏華氏變化
+        tempLabel.text = String(format: "%.0f %@",
+                                weatherData.temp,
+                                returnTempFormatFromUserDefaults())
     }
 
 }

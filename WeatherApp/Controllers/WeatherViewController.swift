@@ -48,6 +48,8 @@ class WeatherViewController: UIViewController {
             allLocations = []
             allWeatherViews = []
             
+            removeViewsFromScrollView()
+            
             locationAuthCheck()
         }
         /* 在畫面大小確定後，加入 xib view
@@ -87,6 +89,12 @@ class WeatherViewController: UIViewController {
         addWeatherToScrollView()
         setPageControlPageNumber()
         
+    }
+    
+    private func removeViewsFromScrollView() {
+        for view in scrollView.subviews {
+            view.removeFromSuperview()
+        }
     }
     
     private func createWeatherViews() {

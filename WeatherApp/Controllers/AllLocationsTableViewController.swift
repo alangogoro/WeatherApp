@@ -12,6 +12,9 @@ protocol AllLocationsTableViewControllerDelegate {
 }
 
 class AllLocationsTableViewController: UITableViewController {
+    // MARK: IBOutlets
+    @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var tempSegmentedControl: UISegmentedControl!
     
     // MARK: Vars
     var savedLocations: [WeatherLocation]?
@@ -28,10 +31,21 @@ class AllLocationsTableViewController: UITableViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadFromUserDefaults()
+        /* 設置 TableView 的 Footer */
+        tableView.tableFooterView = footerView
+        
+        loadLocationsFromUserDefaults()
+        loadTempFormatFromUserDefaults()
+        
     }
+    
+    // MARK: IBActions
+    @IBAction func tempSegmentValueChanged(_ sender: UISegmentedControl) {
+        updateTempFormatInUserDefaults(newValue: sender.selectedSegmentIndex)
+    }
+    
 
-    // MARK: - Table view data source
+    // MARK: Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weatherData?.count ?? 0
     }
@@ -85,6 +99,8 @@ class AllLocationsTableViewController: UITableViewController {
         }
         
     }
+    
+    // MARK: - 使用 UserDefaults
     private func saveLocationsToUserDefaults() {
         shouldRefresh = true
         
@@ -95,8 +111,7 @@ class AllLocationsTableViewController: UITableViewController {
         userDefaults.synchronize()
     }
     
-    // MARK: 使用 UserDefaults
-    private func loadFromUserDefaults() {
+    private func loadLocationsFromUserDefaults() {
         
         if let data = userDefaults.value(forKey: "Locations") as? Data {
             savedLocations = try? PropertyListDecoder().decode([WeatherLocation].self, from: data)
@@ -104,8 +119,21 @@ class AllLocationsTableViewController: UITableViewController {
         print("UserDefaluts 中有\(savedLocations?.count ?? 0)筆 WeatherLocation")
         
     }
+    /** 切換華氏攝氏，並儲存設定至偏好設定 */
+    private func updateTempFormatInUserDefaults(newValue: Int) {
+        shouldRefresh = true
+        userDefaults.setValue(newValue, forKey: "TempFormat")
+        userDefaults.synchronize()
+    }
+    private func loadTempFormatFromUserDefaults() {
+        if let index = userDefaults.value(forKey: "TempFormat") {
+            tempSegmentedControl.selectedSegmentIndex = index as! Int
+        } else {
+            tempSegmentedControl.selectedSegmentIndex = 0
+        }
+    }
     
-    // MARK: Navigation
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueId {
             let destination = segue.destination as! ChooseCityViewController

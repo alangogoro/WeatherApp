@@ -37,6 +37,7 @@
 		CEA236D2255110AB0031D00B /* MainWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA236D1255110AB0031D00B /* MainWeatherTableViewCell.swift */; };
 		CEA236D5255112C40031D00B /* CityTempData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA236D4255112C40031D00B /* CityTempData.swift */; };
 		CEA236D925525BCC0031D00B /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA236D825525BCC0031D00B /* LocationService.swift */; };
+		CEA236E8255549470031D00B /* TempFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA236E7255549460031D00B /* TempFormat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		CEA236D1255110AB0031D00B /* MainWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeatherTableViewCell.swift; sourceTree = "<group>"; };
 		CEA236D4255112C40031D00B /* CityTempData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTempData.swift; sourceTree = "<group>"; };
 		CEA236D825525BCC0031D00B /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		CEA236E7255549460031D00B /* TempFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempFormat.swift; sourceTree = "<group>"; };
 		DC8383B1068665ABD0C88BF7 /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,6 +179,7 @@
 				CE77C5432536C7310025E450 /* WeatherLocation.swift */,
 				CEA236D4255112C40031D00B /* CityTempData.swift */,
 				CEA236D825525BCC0031D00B /* LocationService.swift */,
+				CEA236E7255549460031D00B /* TempFormat.swift */,
 			);
 			path = "Model Helpers";
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				CE9E6F48252C38A700FBBD31 /* HourlyForecast.swift in Sources */,
 				CE77C5482536CB6A0025E450 /* APIurls.swift in Sources */,
 				CEA236D2255110AB0031D00B /* MainWeatherTableViewCell.swift in Sources */,
+				CEA236E8255549470031D00B /* TempFormat.swift in Sources */,
 				CE4E00C725336A0500EE30A0 /* InfoCollectionViewCell.swift in Sources */,
 				CE4E00BD2532E4E900EE30A0 /* DateHelper.swift in Sources */,
 				CE4E00CC2533736A00EE30A0 /* WeatherInfo.swift in Sources */,
