@@ -26,6 +26,8 @@ class WeatherViewController: UIViewController {
     var allWeatherViews: [WeatherView] = []
     var allWeatherData: [CityTempData] = []
     
+    var shouldRefresh = true
+    
     let segueId = "allLocationsSegue"
     
     
@@ -42,8 +44,12 @@ class WeatherViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        locationAuthCheck()
-        
+        if shouldRefresh {
+            allLocations = []
+            allWeatherViews = []
+            
+            locationAuthCheck()
+        }
         /* 在畫面大小確定後，加入 xib view
          * 大小設定為和 ScrollView 一樣 */
 //        let weatherView = WeatherView()
@@ -203,7 +209,7 @@ class WeatherViewController: UIViewController {
     private func locationAuthCheck() {
         
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            /* 依照定位設置當前位置 */
+            /* 依照定位設置當前地點 */
             currentLocation = locationManager!.location?.coordinate
             
             if currentLocation != nil {
@@ -239,6 +245,7 @@ class WeatherViewController: UIViewController {
         if segue.identifier == segueId {
             let controller = segue.destination as! AllLocationsTableViewController
             controller.weatherData = allWeatherData
+            controller.delegate = self
         }
     }
 }
@@ -261,4 +268,19 @@ extension WeatherViewController: UIScrollViewDelegate {
         updatePageControlSelectedPage(currentPage: Int(round(value)))
     }
     
+}
+
+extension WeatherViewController: AllLocationsTableViewControllerDelegate {
+    func didChooseLocation(atIndex: Int, shouldRefresh: Bool) {
+        /* 當使用者點選了某一地點，將該地點的 index 傳回此頁，轉換成 CGFloat */
+        let viewNumber = CGFloat(integerLiteral: atIndex)
+        /* 利用上步的 CGFloat 值與（ScrollView 本身的寬+邊距1），定位畫面的 x、y 位置 */
+        let offset = CGPoint(x: (scrollView.frame.width + 1.0) * viewNumber, y: 0)
+        scrollView.setContentOffset(offset, animated: true)
+        /* 同時更新 PageControl */
+        updatePageControlSelectedPage(currentPage: atIndex)
+        
+        // 避免更新所有地點的天氣資料，浪費網路資源
+        self.shouldRefresh = shouldRefresh
+    }
 }

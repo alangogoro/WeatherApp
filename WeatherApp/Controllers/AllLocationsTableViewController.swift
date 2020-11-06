@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol AllLocationsTableViewControllerDelegate {
+    func didChooseLocation(atIndex: Int, shouldRefresh: Bool)
+}
+
 class AllLocationsTableViewController: UITableViewController {
     
     // MARK: Vars
@@ -14,8 +18,12 @@ class AllLocationsTableViewController: UITableViewController {
     var weatherData: [CityTempData]?
     var userDefaults = UserDefaults.standard
     
+    var delegate: AllLocationsTableViewControllerDelegate?
+    var shouldRefresh = false
+    
     private let reuseIdentifier = "Cell"
     private let segueId = "ChooseCitySegue"
+    
     
     // MARK: View Lifecycle
     override func viewDidLoad() {
@@ -40,6 +48,10 @@ class AllLocationsTableViewController: UITableViewController {
     
     // MARK: TableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 取消選取 row 的動畫
+        tableView.deselectRow(at: indexPath, animated: true)
+        delegate?.didChooseLocation(atIndex: indexPath.row, shouldRefresh: shouldRefresh)
+        self.dismiss(animated: true)
     }
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // 第一行（本地城市不能被刪除，其它可以）
@@ -74,12 +86,13 @@ class AllLocationsTableViewController: UITableViewController {
         
     }
     private func saveLocationsToUserDefaults() {
+        shouldRefresh = true
+        
         /* 儲存至 UserDefaults 必須先用 PropertyListEncoder 編碼 */
         let value = try? PropertyListEncoder().encode(savedLocations!)
         userDefaults.setValue(value, forKey: "Locations")
         /*          .synchronize() */
         userDefaults.synchronize()
-        
     }
     
     // MARK: 使用 UserDefaults
@@ -104,6 +117,9 @@ class AllLocationsTableViewController: UITableViewController {
 
 extension AllLocationsTableViewController: ChooseCityViewControllerDelegate {
     func didAdd(newLocation: WeatherLocation) {
+        shouldRefresh = true
+        weatherData?.append(CityTempData(city: newLocation.city, temp: 0.0))
+        tableView.reloadData()
         //print("已新增城市", newLocation.country, newLocation.city)
     }
 }
